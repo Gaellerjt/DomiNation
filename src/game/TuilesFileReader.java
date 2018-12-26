@@ -12,6 +12,8 @@ import static java.lang.Integer.parseInt;
 public class TuilesFileReader {
 
     public static void main(String[] args) {
+
+        // Récupérer les tuiles
         ArrayList<Tuile> tuilesFromFile = getTuilesFromFile();
         System.out.println(tuilesFromFile);
     }

@@ -180,5 +180,15 @@ public class GameManager {
             return null;
         }
     }
+
+    // Fonction principale
+    public static void main(String[] args) {
+
+        // On crée l'interface graphique
+        InterfaceGraphique InterfaceGraphique = new InterfaceGraphique();
+        // On affiche le menu principal
+        InterfaceGraphique.Menu();
+
+    }
 }
 
