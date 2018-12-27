@@ -2,9 +2,9 @@ package game;
 
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
-
 import java.awt.*;
 import java.net.SocketOption;
+
 
 public class InterfaceGraphique {
 
