@@ -3,11 +3,10 @@ package game;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Scanner;
+
 import edu.princeton.cs.introcs.StdDraw;
-
-
-import static java.lang.Integer.parseInt;
 
 public class GameManager {
 
@@ -23,8 +22,8 @@ public class GameManager {
         ArrayList<Roi> rois = new ArrayList<>();
         int nmbRois = 4;
         int nmbChateau = 4;
-        for (int i = 0; i < nmbRois ; i++){
-            int a = (int)(Math.random() * (kingColors.length - 1));
+        for (int i = 0; i < nmbRois; i++) {
+            int a = (int) (Math.random() * (kingColors.length - 1));
             Roi roi = new Roi(kingColors[a]);
             rois.add(roi);
             rois.add(roi);
@@ -32,8 +31,8 @@ public class GameManager {
         }
 
         ArrayList<Chateau> chateaux = new ArrayList<>();
-        for (int i = 0; i <nmbChateau ; i ++){
-            int a = (int)(Math.random() * (kingColors.length - 1));
+        for (int i = 0; i < nmbChateau; i++) {
+            int a = (int) (Math.random() * (kingColors.length - 1));
             Chateau chateau = new Chateau(kingColors[a]);
             chateaux.add(chateau);
             kingColors[a] = null;
@@ -67,11 +66,11 @@ public class GameManager {
             paquet.add(tuiles.get((int) (Math.random() * 48)));
         }
         if (nmbJoueurs == 3) {
-            for (int k = 0; k < 12 ; k++){
+            for (int k = 0; k < 12; k++) {
                 paquet.remove((int) (Math.random() * 48));
             }
         } else if (nmbJoueurs == 2) {
-            for (int g = 0 ; g < 24; g++){
+            for (int g = 0; g < 24; g++) {
                 paquet.remove((int) (Math.random() * 48));
             }
         }
@@ -82,7 +81,7 @@ public class GameManager {
 
         // Attribuer paquet, rois et chateau à chaque joueur
 
-        for (int i = 0 ; i < nmbJoueurs; i++){
+        for (int i = 0; i < nmbJoueurs; i++) {
 
             // game.Chateau
             Chateau essaiC = chateaux.get((int) Math.random() * 4);
@@ -90,7 +89,7 @@ public class GameManager {
             chateaux.remove(essaiC);
             int x = scanner.nextInt();
             int y = scanner.nextInt();
-            StdDraw.filledSquare(x,y, 5 );
+            StdDraw.filledSquare(x, y, 5);
 
             //game.Roi
             Roi essaiR = rois.get((int) Math.random() * 8);
@@ -112,10 +111,10 @@ public class GameManager {
             }
 
             // La tuile de départ
-            Tuile tuileDepart = paquet.get((int)Math.random()*paquet.size());
+            Tuile tuileDepart = paquet.get((int) Math.random() * paquet.size());
             paquetJoueurs.add(tuileDepart);
             paquet.remove(tuileDepart);
-            StdDraw.filledSquare(x,y, 5 );
+            StdDraw.filledSquare(x, y, 5);
 
 /*
             //Création du joueur
@@ -140,7 +139,7 @@ public class GameManager {
 
         while (paquet.size() != 0) {
 
-            for (int i = 0; i < countRois.size() ; i++) {
+            for (int i = 0; i < countRois.size(); i++) {
                 Tuile pioche = paquet.get(0);
                 //Mettre les dominos au milieu du jeu
                 paquetPlateforme.add(pioche);
@@ -149,7 +148,7 @@ public class GameManager {
             }
 
 
-            for (int j = 0 ; j < nmbJoueurs ; j ++) {
+            for (int j = 0; j < nmbJoueurs; j++) {
                 Joueur joueurPlaying = pickPlayer(firstRoundPlayers, turnNumber);
                 // Le joueur choisi le domino qu'il veut
                 int dominoChoisi = scanner.nextInt();
@@ -165,7 +164,6 @@ public class GameManager {
     }
 
     /**
-     *
      * @param firstRoundPlayers
      * @param turnNumber
      * @return
@@ -194,24 +192,50 @@ public class GameManager {
 
         ArrayList<Tuile> listePaquet = new ArrayList<Tuile>();
 
-
         // On crée l'interface graphique
         InterfaceGraphique InterfaceGraphique = new InterfaceGraphique();
         // On affiche le menu principal
         int nombreJoueurs = InterfaceGraphique.Menu();
 
         // On crée le nombre de joueurs
-        System.out.println("nombre de joueurs = "+nombreJoueurs);
+        System.out.println("nombre de joueurs = " + nombreJoueurs);
         ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
         for (int i = 0; i < nombreJoueurs; i++) {
-            listeJoueurs.add(new Joueur("Joueur "+(i+1),listeRois,new Chateau(Color.WHITE),listePaquet));
+            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet));
         }
 
-        // Pour chaque joueur dans la liste des joueurs, on choisit un roi
-        for(Joueur j:listeJoueurs) {
-            InterfaceGraphique.selectionRoi(listeRois,j);
-        }
 
+        // On crée d'abord une variable roi temporaire
+        Roi temp = new Roi(Color.WHITE);
+        // On explore ensuite chaque joueur crée dans l'ArrayList
+        for (Joueur j : listeJoueurs) {
+            // On récupère le roi sélectionné dans le menu qui sera à supprimer
+            Roi roiASupprimer = InterfaceGraphique.selectionRoi(listeRois, j);
+            // On crée une boucle for qui parcourt chaque roi dans la liste des rois qui existe
+            for (Iterator<Roi> i = listeRois.iterator(); i.hasNext();) {
+                Roi r = i.next();
+                // Si le roi à supprimer est de la même couleur que le roi choisi par le joueur, on stocke ce roi dans la variable temporaire
+                // créée plus haut et on casse la boucle
+                if (r.getCouleurRoi().equals(roiASupprimer.getCouleurRoi())) {
+                    temp = r;
+                    break;
+                }
+            }
+            /* On assigne le roi au joueur, 2 cas se présentent :
+            - Il y a 2 joueurs: chaque joueur aura 2 rois de la même couleur
+            - Il y a 3 ou 4 joueurs : chaque joueur aura un seul Roi
+            */
+            ArrayList<Roi> arrayRoi = new ArrayList<Roi>();
+            arrayRoi.add(temp);
+            // Si il y a 2 joueurs, on ajoute une deuxieme fois un Roi
+            if(nombreJoueurs == 2)
+                arrayRoi.add(temp);
+            j.setRoi(arrayRoi);
+
+            // Enfin, on supprime le roi de la liste temporaire
+            listeRois.remove(temp);
+
+        }
     }
 }
 

@@ -75,40 +75,44 @@ public class InterfaceGraphique {
         StdDraw.text(0.5, 0.9, joueur.getName());
         StdDraw.text(0.5, 0.8, "Choisissez un roi");
 
-        System.out.println(rois.size());
-
         // Affichage des rois
+        // On met chaque roi dans un array temporaire
+        int[] tempRois = new int[]{0,0,0,0};
+
         for (Roi r:rois) {
-            if(r.getCouleurRoi() == Color.GREEN ) {
+            if(r.getCouleurRoi() == Color.GREEN) {
                 StdDraw.picture(0.2, 0.5, "out/img/pion-vert.png", 0.2, 0.2, 0);
+                tempRois[0] = 1;
             }
             if(r.getCouleurRoi() == Color.BLUE) {
                 StdDraw.picture(0.4, 0.5, "out/img/pion-bleu.png", 0.2, 0.2, 0);
-
+                tempRois[1] = 1;
             }
             if(r.getCouleurRoi() == Color.PINK) {
                 StdDraw.picture(0.6, 0.5, "out/img/pion-rose.png", 0.2, 0.2, 0);
+                tempRois[2] = 1;
             }
             if(r.getCouleurRoi() == Color.YELLOW) {
                 StdDraw.picture(0.8, 0.5, "out/img/pion-jaune.png", 0.2, 0.2, 0);
+                tempRois[3] = 1;
             }
         }
 
         // Détection du choix
         while (true) {
-            if (StdDraw.mouseX() >= 0.15 && StdDraw.mouseX() <= 0.25 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed()) {
+            if (StdDraw.mouseX() >= 0.15 && StdDraw.mouseX() <= 0.25 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[0] == 1) {
                 System.out.println("pion vert");
                 Roi roiVert = new Roi(Color.GREEN);
                 return roiVert;
-            } else if (StdDraw.mouseX() >= 0.35 && StdDraw.mouseX() <= 0.45 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed()) {
+            } else if (StdDraw.mouseX() >= 0.35 && StdDraw.mouseX() <= 0.45 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[1] == 1) {
                 System.out.println("pion bleu");
                 Roi roiBleu = new Roi(Color.BLUE);
                 return roiBleu;
-            } else if (StdDraw.mouseX() >= 0.55 && StdDraw.mouseX() <= 0.65 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed()) {
+            } else if (StdDraw.mouseX() >= 0.55 && StdDraw.mouseX() <= 0.65 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[2] == 1) {
                 System.out.println("pion rose");
                 Roi roiRose = new Roi(Color.PINK);
                 return roiRose;
-            } else if (StdDraw.mouseX() >= 0.75 && StdDraw.mouseX() <= 0.85 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed()) {
+            } else if (StdDraw.mouseX() >= 0.75 && StdDraw.mouseX() <= 0.85 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[3] == 1) {
                 System.out.println("pion jaune");
                 Roi roiJaune = new Roi(Color.YELLOW);
                 return roiJaune;

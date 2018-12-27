@@ -14,4 +14,5 @@ public class Roi {
     public void setCouleurRoi(Color couleurRoi) {
         this.couleurRoi = couleurRoi;
     }
+
 }
