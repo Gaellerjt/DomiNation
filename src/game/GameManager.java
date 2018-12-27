@@ -117,11 +117,11 @@ public class GameManager {
             paquet.remove(tuileDepart);
             StdDraw.filledSquare(x,y, 5 );
 
-
+/*
             //Création du joueur
             Joueur joueur = new Joueur("Joueur " + i, newRois,newChateau,paquetJoueurs);
             joueurs.add(joueur);
-
+*/
 
             // Remettre à 0 les arguments du joueur pour le joueur d'après
             newRois.remove(newRois.size());
@@ -182,12 +182,35 @@ public class GameManager {
     }
 
     // Fonction principale
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        // Création des ArrayLists
+        // ArrayList des Rois
+        ArrayList<Roi> listeRois = new ArrayList<Roi>();
+        listeRois.add(new Roi(Color.GREEN));
+        listeRois.add(new Roi(Color.BLUE));
+        listeRois.add(new Roi(Color.PINK));
+        listeRois.add(new Roi(Color.YELLOW));
+
+        ArrayList<Tuile> listePaquet = new ArrayList<Tuile>();
+
 
         // On crée l'interface graphique
         InterfaceGraphique InterfaceGraphique = new InterfaceGraphique();
         // On affiche le menu principal
-        InterfaceGraphique.Menu();
+        int nombreJoueurs = InterfaceGraphique.Menu();
+
+        // On crée le nombre de joueurs
+        System.out.println("nombre de joueurs = "+nombreJoueurs);
+        ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
+        for (int i = 0; i < nombreJoueurs; i++) {
+            listeJoueurs.add(new Joueur("Joueur "+(i+1),listeRois,new Chateau(Color.WHITE),listePaquet));
+        }
+
+        // Pour chaque joueur dans la liste des joueurs, on choisit un roi
+        for(Joueur j:listeJoueurs) {
+            InterfaceGraphique.selectionRoi(listeRois,j);
+        }
 
     }
 }
