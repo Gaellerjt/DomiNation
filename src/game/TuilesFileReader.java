@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
@@ -54,6 +55,28 @@ public class TuilesFileReader {
             }
         }
         return tuiles;
+    }
+
+    // Mélange les tuiles en fonction du nombre de joueurs
+    public static ArrayList<Tuile> shuffleTuiles(ArrayList<Tuile> listeTuiles, int nombreJoueurs) {
+        Random rand = new Random();
+
+        ArrayList<Tuile> finalArray = new ArrayList<>();
+
+        int tuilesASupprimer = 0;
+        if(nombreJoueurs == 2) {
+            tuilesASupprimer = 24;
+        } else if(nombreJoueurs == 3) {
+            tuilesASupprimer = 12;
+        }
+
+        for(int i = 0; i < 48 - tuilesASupprimer; i++) {
+            int randomIndex = rand.nextInt(listeTuiles.size());
+            Tuile tuile = listeTuiles.get(randomIndex);
+            finalArray.add(tuile);
+            listeTuiles.remove(tuile);
+        }
+        return finalArray;
     }
 
 }

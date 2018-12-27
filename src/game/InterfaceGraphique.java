@@ -64,8 +64,7 @@ public class InterfaceGraphique {
     }
 
     // Fonction de sélection de la couleur du Roi
-
-    Roi selectionRoi(ArrayList<Roi> rois, Joueur joueur) throws InterruptedException {
+    static Roi selectionRoi(ArrayList<Roi> rois, Joueur joueur) throws InterruptedException {
         Thread.sleep(500);
         StdDraw.clear();
 
@@ -102,20 +101,16 @@ public class InterfaceGraphique {
         while (true) {
             if (StdDraw.mouseX() >= 0.15 && StdDraw.mouseX() <= 0.25 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[0] == 1) {
                 System.out.println("pion vert");
-                Roi roiVert = new Roi(Color.GREEN);
-                return roiVert;
+                return new Roi(Color.GREEN);
             } else if (StdDraw.mouseX() >= 0.35 && StdDraw.mouseX() <= 0.45 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[1] == 1) {
                 System.out.println("pion bleu");
-                Roi roiBleu = new Roi(Color.BLUE);
-                return roiBleu;
+                return new Roi(Color.BLUE);
             } else if (StdDraw.mouseX() >= 0.55 && StdDraw.mouseX() <= 0.65 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[2] == 1) {
                 System.out.println("pion rose");
-                Roi roiRose = new Roi(Color.PINK);
-                return roiRose;
+                return new Roi(Color.PINK);
             } else if (StdDraw.mouseX() >= 0.75 && StdDraw.mouseX() <= 0.85 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[3] == 1) {
                 System.out.println("pion jaune");
-                Roi roiJaune = new Roi(Color.YELLOW);
-                return roiJaune;
+                return new Roi(Color.YELLOW);
             }
         }
     }
