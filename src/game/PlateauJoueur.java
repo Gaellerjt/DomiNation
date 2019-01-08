@@ -3,8 +3,8 @@ package game;
 
 public class PlateauJoueur {
 
-    public int x = 25;
-    public int y = 25;
+    public int x = 9;
+    public int y = 9;
     public Case[][] grid;
 
     public PlateauJoueur(Case grid){
