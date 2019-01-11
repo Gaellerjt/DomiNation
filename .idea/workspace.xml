@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="083ad7ca-fadb-4c50-8cc5-8b44ad836ff6" name="Default Changelist" comment="t">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DomiNation/game/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DomiNation/game/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DomiNation/game/InterfaceGraphique.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DomiNation/game/InterfaceGraphique.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DomiNation/game/Tuile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DomiNation/game/Tuile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/InterfaceGraphique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/InterfaceGraphique.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Tuile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Tuile.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -108,8 +103,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game/InterfaceGraphique.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+            <state relative-caret-position="453">
+              <caret line="180" column="23" selection-start-line="180" selection-start-column="23" selection-end-line="180" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#selectionRoi#0;class#InterfaceGraphique#0" />
@@ -218,7 +213,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547242243053" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547243489729" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -334,12 +329,12 @@
       <workItem from="1546269161750" duration="5964000" />
       <workItem from="1546970201454" duration="5551000" />
       <workItem from="1547112480400" duration="3119000" />
-      <workItem from="1547239328148" duration="2850000" />
+      <workItem from="1547239328148" duration="4099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36018000" />
+    <option name="totallyTimeSpent" value="37267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -510,8 +505,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/InterfaceGraphique.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="179" lean-forward="true" selection-start-line="179" selection-end-line="179" />
+        <state relative-caret-position="453">
+          <caret line="180" column="23" selection-start-line="180" selection-start-column="23" selection-end-line="180" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#selectionRoi#0;class#InterfaceGraphique#0" />

@@ -155,27 +155,30 @@ public class InterfaceGraphique {
 
             // Affichage paysage domino
             if(tuile.getType1().equals("Prairie")) {
-                StdDraw.picture(i,0.55,"out/img/dominos/prairie.png");
+                StdDraw.picture(i,0.55,"out/img/dominos/prairie.png",0.2,0.2);
             }
             if(tuile.getType1().equals("Foret")) {
-                StdDraw.picture(i,0.55,"out/img/dominos/foret.png");
+                StdDraw.picture(i,0.55,"out/img/dominos/foret.png",0.2,0.2);
             }
             if(tuile.getType1().equals("Champs")) {
-                StdDraw.picture(i,0.55,"out/img/dominos/champs.png");
+                StdDraw.picture(i,0.55,"out/img/dominos/champs.png",0.2,0.2);
             }
             if(tuile.getType1().equals("Mer")) {
-                StdDraw.picture(i,0.55,"out/img/dominos/mer.png");
+                StdDraw.picture(i,0.55,"out/img/dominos/mer.png",0.2,0.2);
             }
             if(tuile.getType1().equals("Montagne")) {
-                StdDraw.picture(i,0.55,"out/img/dominos/montagne.png");
+                StdDraw.picture(i,0.55,"out/img/dominos/montagne.png",0.2,0.2);
             }
             if(tuile.getType1().equals("Mine")) {
-                StdDraw.picture(i,0.55,"out/img/dominos/mine.png");
+                StdDraw.picture(i,0.55,"out/img/dominos/mine.png",0.2,0.2);
             }
 
             // Affichage couronnes
+            double k = -0.05;
+
             for(int j = 1; j <= tuile.getNmbCouronne1(); j++){
-                StdDraw.picture(i,0.55,"out/img/couronne.png",0.1,0.1);
+                StdDraw.picture(i+k,0.55,"out/img/couronne.png",0.05,0.05);
+                k+=0.05;
             }
 
 
@@ -185,22 +188,22 @@ public class InterfaceGraphique {
         i = 0.2;
         for(Tuile tuile:listeDominos) {
             if(tuile.getType2().equals("Prairie")) {
-                StdDraw.picture(i,0.65,"out/img/dominos/prairie.png");
+                StdDraw.picture(i,0.75,"out/img/dominos/prairie.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Foret")) {
-                StdDraw.picture(i,0.65,"out/img/dominos/foret.png");
+                StdDraw.picture(i,0.75,"out/img/dominos/foret.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Champs")) {
-                StdDraw.picture(i,0.65,"out/img/dominos/champs.png");
+                StdDraw.picture(i,0.75,"out/img/dominos/champs.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Mer")) {
-                StdDraw.picture(i,0.65,"out/img/dominos/mer.png");
+                StdDraw.picture(i,0.75,"out/img/dominos/mer.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Montagne")) {
-                StdDraw.picture(i,0.65,"out/img/dominos/montagne.png");
+                StdDraw.picture(i,0.75,"out/img/dominos/montagne.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Mine")) {
-                StdDraw.picture(i,0.65,"out/img/dominos/mine.png");
+                StdDraw.picture(i,0.75,"out/img/dominos/mine.png",0.2,0.2);
             }
             i += 0.2;
         }
