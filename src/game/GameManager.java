@@ -214,10 +214,10 @@ public class GameManager {
 
 
         System.out.println(listeTuiles.size());
-        ArrayList<Tuile> listeDes4PremiersDominos = InterfaceGraphique.selectionnerDominos(listeTuiles);
+        ArrayList<Tuile> listeDes4PremiersDominos = Tuile.selectionnerDominos(listeTuiles,nombreJoueurs);
         System.out.println(InterfaceGraphique.supprimerDominos(listeTuiles,listeDes4PremiersDominos).size());
 
-
+        InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos);
     }
 }
 

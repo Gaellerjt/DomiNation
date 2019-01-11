@@ -1,6 +1,8 @@
 package game;
 
 
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Tuile {
@@ -71,5 +73,23 @@ public class Tuile {
 
     public void setNumeroDomino(int numeroDomino) {
         this.numeroDomino = numeroDomino;
+    }
+
+    public static ArrayList<Tuile> selectionnerDominos(ArrayList<Tuile> listeTuiles, int nombreDeJoueurs) {
+        ArrayList<Tuile> dominosChoisis = new ArrayList<>();
+
+        Random rand = new Random();
+        int nombreDeDomino = 4;
+        if(nombreDeJoueurs == 3) {
+            nombreDeDomino = 3;
+        }
+        // Récupère une tuile au hasard
+        for (int i = 0; i < nombreDeDomino; i++) {
+            Tuile randomElement = listeTuiles.get(rand.nextInt(listeTuiles.size()));
+            dominosChoisis.add(randomElement);
+            System.out.println(randomElement.getType1() + " " + randomElement.getType2()+" "+randomElement.getNumeroDomino());
+        }
+
+        return dominosChoisis;
     }
 }

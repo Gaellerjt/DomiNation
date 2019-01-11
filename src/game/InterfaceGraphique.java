@@ -138,20 +138,7 @@ public class InterfaceGraphique {
         StdDraw.picture(0.5, 0.5, "out/img/chateau.jpg", 0.2, 0.2);
     }
 
-    public static ArrayList<Tuile> selectionnerDominos(ArrayList<Tuile> listeTuiles) {
-        ArrayList<Tuile> dominosChoisis = new ArrayList<>();
 
-        Random rand = new Random();
-
-        // Récupère une tuile au hasard
-        for (int i = 0; i < 4; i++) {
-            Tuile randomElement = listeTuiles.get(rand.nextInt(listeTuiles.size()));
-            dominosChoisis.add(randomElement);
-            System.out.println(randomElement.getType1() + " " + randomElement.getType2()+" "+randomElement.getNumeroDomino());
-        }
-
-        return dominosChoisis;
-    }
 
     public static ArrayList<Tuile> supprimerDominos(ArrayList<Tuile> listePrincipale, ArrayList<Tuile> elementsASupprimer) {
 
@@ -159,6 +146,67 @@ public class InterfaceGraphique {
         return listePrincipale;
     }
 
+    public static void afficherDominosPioche(ArrayList<Tuile> listeDominos) {
+        StdDraw.clear();
+
+        double i = 0.2;
+
+        for(Tuile tuile:listeDominos) {
+
+            // Affichage paysage domino
+            if(tuile.getType1().equals("Prairie")) {
+                StdDraw.picture(i,0.55,"out/img/dominos/prairie.png");
+            }
+            if(tuile.getType1().equals("Foret")) {
+                StdDraw.picture(i,0.55,"out/img/dominos/foret.png");
+            }
+            if(tuile.getType1().equals("Champs")) {
+                StdDraw.picture(i,0.55,"out/img/dominos/champs.png");
+            }
+            if(tuile.getType1().equals("Mer")) {
+                StdDraw.picture(i,0.55,"out/img/dominos/mer.png");
+            }
+            if(tuile.getType1().equals("Montagne")) {
+                StdDraw.picture(i,0.55,"out/img/dominos/montagne.png");
+            }
+            if(tuile.getType1().equals("Mine")) {
+                StdDraw.picture(i,0.55,"out/img/dominos/mine.png");
+            }
+
+            // Affichage couronnes
+            for(int j = 1; j <= tuile.getNmbCouronne1(); j++){
+                StdDraw.picture(i,0.55,"out/img/couronne.png",0.1,0.1);
+            }
+
+
+            i += 0.2;
+        }
+
+        i = 0.2;
+        for(Tuile tuile:listeDominos) {
+            if(tuile.getType2().equals("Prairie")) {
+                StdDraw.picture(i,0.65,"out/img/dominos/prairie.png");
+            }
+            if(tuile.getType2().equals("Foret")) {
+                StdDraw.picture(i,0.65,"out/img/dominos/foret.png");
+            }
+            if(tuile.getType2().equals("Champs")) {
+                StdDraw.picture(i,0.65,"out/img/dominos/champs.png");
+            }
+            if(tuile.getType2().equals("Mer")) {
+                StdDraw.picture(i,0.65,"out/img/dominos/mer.png");
+            }
+            if(tuile.getType2().equals("Montagne")) {
+                StdDraw.picture(i,0.65,"out/img/dominos/montagne.png");
+            }
+            if(tuile.getType2().equals("Mine")) {
+                StdDraw.picture(i,0.65,"out/img/dominos/mine.png");
+            }
+            i += 0.2;
+        }
+
+
+    }
 
     public static void main(String[] args) {
 
