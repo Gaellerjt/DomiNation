@@ -152,6 +152,11 @@ public class InterfaceGraphique {
         double i = 0.2;
 
         for(Tuile tuile:listeDominos) {
+            Font noir = new Font("Arial",1,20);
+            StdDraw.setPenColor(Color.BLACK);
+            StdDraw.setFont(noir);
+            StdDraw.text(i,0.7,Integer.toString(tuile.getNumeroDomino()));
+
 
             // Affichage paysage domino
             if(tuile.getType1().equals("Prairie")) {
@@ -173,7 +178,7 @@ public class InterfaceGraphique {
                 StdDraw.picture(i,0.55,"out/img/dominos/mine.png",0.2,0.2);
             }
 
-            // Affichage couronnes
+            // Affichage couronnes tuiles du haut
             double k = -0.05;
 
             for(int j = 1; j <= tuile.getNmbCouronne1(); j++){
@@ -188,25 +193,35 @@ public class InterfaceGraphique {
         i = 0.2;
         for(Tuile tuile:listeDominos) {
             if(tuile.getType2().equals("Prairie")) {
-                StdDraw.picture(i,0.75,"out/img/dominos/prairie.png",0.2,0.2);
+                StdDraw.picture(i,0.35,"out/img/dominos/prairie.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Foret")) {
-                StdDraw.picture(i,0.75,"out/img/dominos/foret.png",0.2,0.2);
+                StdDraw.picture(i,0.35,"out/img/dominos/foret.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Champs")) {
-                StdDraw.picture(i,0.75,"out/img/dominos/champs.png",0.2,0.2);
+                StdDraw.picture(i,0.35,"out/img/dominos/champs.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Mer")) {
-                StdDraw.picture(i,0.75,"out/img/dominos/mer.png",0.2,0.2);
+                StdDraw.picture(i,0.35,"out/img/dominos/mer.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Montagne")) {
-                StdDraw.picture(i,0.75,"out/img/dominos/montagne.png",0.2,0.2);
+                StdDraw.picture(i,0.35,"out/img/dominos/montagne.png",0.2,0.2);
             }
             if(tuile.getType2().equals("Mine")) {
-                StdDraw.picture(i,0.75,"out/img/dominos/mine.png",0.2,0.2);
+                StdDraw.picture(i,0.35,"out/img/dominos/mine.png",0.2,0.2);
             }
+
+            double k = -0.05;
+
+            for(int j = 1; j <= tuile.getNmbCouronne2(); j++){
+                StdDraw.picture(i+k,0.35,"out/img/couronne.png",0.05,0.05);
+                k+=0.05;
+            }
+
             i += 0.2;
         }
+
+
 
 
     }

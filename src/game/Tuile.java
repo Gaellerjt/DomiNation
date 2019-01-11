@@ -1,6 +1,7 @@
 package game;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -87,9 +88,10 @@ public class Tuile {
         for (int i = 0; i < nombreDeDomino; i++) {
             Tuile randomElement = listeTuiles.get(rand.nextInt(listeTuiles.size()));
             dominosChoisis.add(randomElement);
-            System.out.println(randomElement.getType1() + " " + randomElement.getType2()+" "+randomElement.getNumeroDomino());
+            System.out.println(randomElement.getType1() + " " + randomElement.getType2()+" "+randomElement.getNumeroDomino()+" "+randomElement.getNmbCouronne1()+" "+randomElement.getNmbCouronne2());
         }
 
         return dominosChoisis;
     }
+
 }

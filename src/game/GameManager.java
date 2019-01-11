@@ -212,12 +212,13 @@ public class GameManager {
         // Savoir quel joueur commence
         Joueur joueurQuiCommence = listeJoueurs.get((int) (Math.random() * listeJoueurs.size()));
 
-
-        System.out.println(listeTuiles.size());
         ArrayList<Tuile> listeDes4PremiersDominos = Tuile.selectionnerDominos(listeTuiles,nombreJoueurs);
-        System.out.println(InterfaceGraphique.supprimerDominos(listeTuiles,listeDes4PremiersDominos).size());
 
+        // On trie les dominos
+        TuilesManager.sortTuilesByNumber(listeDes4PremiersDominos);
         InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos);
+
+
     }
 }
 
