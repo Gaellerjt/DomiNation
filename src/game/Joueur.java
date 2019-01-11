@@ -48,4 +48,10 @@ public class Joueur {
     public void setPaquet(ArrayList<Tuile> paquet) {
         this.paquet = paquet;
     }
+
+    @Override
+    public String toString() {
+        return "Joueur{" +
+                "pseudo = " + name;
+    }
 }

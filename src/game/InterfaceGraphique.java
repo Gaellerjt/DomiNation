@@ -3,6 +3,7 @@ package game;
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
 
+import javax.naming.spi.StateFactory;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -219,6 +220,29 @@ public class InterfaceGraphique {
             }
 
             i += 0.2;
+        }
+
+        // Boucle de test
+
+        while(true) {
+            for(Tuile t:listeDominos) {
+                if(StdDraw.mouseX() > 0.1 && StdDraw.mouseX() < 0.3 && StdDraw.mouseY() > 0.25 && StdDraw.mouseY() < 0.65 && StdDraw.isMousePressed()) {
+                    System.out.println("domino 1");
+                }
+                if(StdDraw.mouseX() > 0.3 && StdDraw.mouseX() < 0.5 && StdDraw.mouseY() > 0.25 && StdDraw.mouseY() < 0.65 && StdDraw.isMousePressed()) {
+                    System.out.println("domino 2");
+                }
+                if(StdDraw.mouseX() > 0.5 && StdDraw.mouseX() < 0.7 && StdDraw.mouseY() > 0.25 && StdDraw.mouseY() < 0.65 && StdDraw.isMousePressed()) {
+                    System.out.println("domino 3");
+                }
+                if(listeDominos.size() > 3) {
+                    if(StdDraw.mouseX() > 0.7 && StdDraw.mouseX() < 0.9 && StdDraw.mouseY() > 0.25 && StdDraw.mouseY() < 0.65 && StdDraw.isMousePressed()) {
+                        System.out.println("domino 4");
+                    }
+                }
+            }
+
+
         }
 
 

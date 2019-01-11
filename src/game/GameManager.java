@@ -216,9 +216,14 @@ public class GameManager {
 
         // On trie les dominos
         TuilesManager.sortTuilesByNumber(listeDes4PremiersDominos);
+
+        // On affiche les 4 premiers dominos
         InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos);
 
-
+        // On mélange les joueurs
+        Collections.shuffle(listeJoueurs);
+        Joueur joueurAJouer = pickPlayer(listeJoueurs,1);
+        System.out.println(joueurAJouer);
     }
 }
 
