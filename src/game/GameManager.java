@@ -201,12 +201,23 @@ public class GameManager {
             listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet));
         }
 
+
         // On choisit le roi pour chaque joueur
         Roi.choixRoi(listeJoueurs, listeRois, nombreJoueurs);
 
         // On récupère les tuiles en fonction du nombre de joueurs
         ArrayList<Tuile> tuilesFromFile = TuilesFileReader.getTuilesFromFile();
         ArrayList<Tuile> listeTuiles = TuilesFileReader.shuffleTuiles(tuilesFromFile,nombreJoueurs);
+
+        // Savoir quel joueur commence
+        Joueur joueurQuiCommence = listeJoueurs.get((int) (Math.random() * listeJoueurs.size()));
+
+
+        System.out.println(listeTuiles.size());
+        ArrayList<Tuile> listeDes4PremiersDominos = InterfaceGraphique.selectionnerDominos(listeTuiles);
+        System.out.println(InterfaceGraphique.supprimerDominos(listeTuiles,listeDes4PremiersDominos).size());
+
+
     }
 }
 
