@@ -8,13 +8,22 @@ public class Joueur {
     private ArrayList<Roi> roi;
     private Chateau chateaux;
     private ArrayList<Tuile> paquet;
+    private Tuile tampon;
 
-
-    public Joueur(String name, ArrayList<Roi> roi, Chateau chateaux, ArrayList<Tuile> paquet){
+    public Joueur(String name, ArrayList<Roi> roi, Chateau chateaux, ArrayList<Tuile> paquet, Tuile tampon) {
         this.name = name;
         this.roi = roi;
         this.chateaux = chateaux;
         this.paquet = paquet;
+        this.tampon = tampon;
+    }
+
+    public Tuile getTampon() {
+        return tampon;
+    }
+
+    public void setTampon(Tuile tampon) {
+        this.tampon = tampon;
     }
 
     public String getName() {
@@ -47,6 +56,10 @@ public class Joueur {
 
     public void setPaquet(ArrayList<Tuile> paquet) {
         this.paquet = paquet;
+    }
+
+    public void appendPaquet(Tuile tuile) {
+        this.paquet.add(tuile);
     }
 
     @Override

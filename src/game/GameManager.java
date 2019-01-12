@@ -198,9 +198,8 @@ public class GameManager {
         System.out.println("nombre de joueurs = " + nombreJoueurs);
         ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
         for (int i = 0; i < nombreJoueurs; i++) {
-            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet));
+            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0)));
         }
-
 
         // On choisit le roi pour chaque joueur
         Roi.choixRoi(listeJoueurs, listeRois, nombreJoueurs);
@@ -217,13 +216,40 @@ public class GameManager {
         // On trie les dominos
         TuilesManager.sortTuilesByNumber(listeDes4PremiersDominos);
 
-        // On affiche les 4 premiers dominos
-        InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos);
-
         // On mélange les joueurs
-        Collections.shuffle(listeJoueurs);
-        Joueur joueurAJouer = pickPlayer(listeJoueurs,1);
-        System.out.println(joueurAJouer);
+        ArrayList<Joueur> joueurTour = new ArrayList<Joueur>();
+        for (int i = 0; i < nombreJoueurs; i++) {
+            joueurTour.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0)));
+        }
+
+        System.out.println(joueurTour);
+
+        int i = 1;
+        Collections.shuffle(joueurTour);
+
+        Iterator<Joueur> it = joueurTour.iterator();
+        while (it.hasNext()) {
+            Joueur j = it.next();
+            System.out.println(j);
+            // On affiche les 4 premiers dominos
+            Tuile tuileSelectionnee= InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos);
+            j.setTampon(tuileSelectionnee);
+            listeDes4PremiersDominos.remove(tuileSelectionnee);
+            it.remove();
+        }
+        InterfaceGraphique.clear();
+
+        // On crée les plateaux
+
+
+        ArrayList<PlateauJoueur> listePlateaux = new ArrayList<PlateauJoueur>();
+        for(Joueur j:listeJoueurs) {
+            listePlateaux.add(new PlateauJoueur(new int[9][9],j));
+        }
+        System.out.println(listePlateaux);
+
+        InterfaceGraphique.Plateau();
+
     }
 }
 
