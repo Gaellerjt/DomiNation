@@ -102,6 +102,7 @@ public class InterfaceGraphique {
             }
         }
 
+
         // Détection du choix
         while (true) {
             if (StdDraw.mouseX() >= 0.15 && StdDraw.mouseX() <= 0.25 && StdDraw.mouseY() >= 0.40 && StdDraw.mouseY() <= 0.60 && StdDraw.isMousePressed() && tempRois[0] == 1) {
@@ -145,7 +146,7 @@ public class InterfaceGraphique {
         for(Tuile t:joueur.getPaquet()) {
             // On place la partie 1 du Domino
             if (tuile.getType1().equals("Prairie")) {
-                StdDraw.picture(tuile.getX1(),tuile.getX2(),"out/img/dominos/prairie.png",0.2,0.2);
+                StdDraw.picture(tuile.getX1(),tuile.getY1(),"out/img/dominos/prairie.png",0.2,0.2);
                 double k = -0.05;
 
                 for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
@@ -165,7 +166,7 @@ public class InterfaceGraphique {
                 break;
             }
             if (tuile.getType1().equals("Champs")) {
-                StdDraw.picture(tuile.getX1(),tuile.getX2(),"out/img/dominos/champs.png",0.2,0.2);
+                StdDraw.picture(tuile.getX1(),tuile.getY1(),"out/img/dominos/champs.png",0.2,0.2);
                 double k = -0.05;
 
                 for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
@@ -175,7 +176,7 @@ public class InterfaceGraphique {
                 break;
             }
             if (tuile.getType1().equals("Mer")) {
-                StdDraw.picture(tuile.getX1(),tuile.getX2(),"out/img/dominos/mer.png",0.2,0.2);
+                StdDraw.picture(tuile.getX1(),tuile.getY1(),"out/img/dominos/mer.png",0.2,0.2);
                 double k = -0.05;
 
                 for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
@@ -204,9 +205,9 @@ public class InterfaceGraphique {
                 }
                 break;
             }
-            // On place la partie 1 du Domino
+            // On place la partie 2 du Domino
             if (tuile.getType1().equals("Prairie")) {
-                StdDraw.picture(tuile.getX2(),tuile.getX2(),"out/img/dominos/prairie.png",0.2,0.2);
+                StdDraw.picture(tuile.getX2(),tuile.getY2(),"out/img/dominos/prairie.png",0.2,0.2);
                 double k = -0.05;
 
                 for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
@@ -226,7 +227,7 @@ public class InterfaceGraphique {
                 break;
             }
             if (tuile.getType1().equals("Champs")) {
-                StdDraw.picture(tuile.getX2(),tuile.getX2(),"out/img/dominos/champs.png",0.2,0.2);
+                StdDraw.picture(tuile.getX2(),tuile.getY2(),"out/img/dominos/champs.png",0.2,0.2);
                 double k = -0.05;
 
                 for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
@@ -236,7 +237,7 @@ public class InterfaceGraphique {
                 break;
             }
             if (tuile.getType1().equals("Mer")) {
-                StdDraw.picture(tuile.getX2(),tuile.getX2(),"out/img/dominos/mer.png",0.2,0.2);
+                StdDraw.picture(tuile.getX2(),tuile.getY2(),"out/img/dominos/mer.png",0.2,0.2);
                 double k = -0.05;
 
                 for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
@@ -270,9 +271,10 @@ public class InterfaceGraphique {
 
         // Création grille magnétique
 
+
         while(true)
         {
-            // On affiche les coordonnées
+            // On affiche les coordonnées et place le domino
             if (StdDraw.isMousePressed()) {
 
                 double x = StdDraw.mouseX();
@@ -430,7 +432,7 @@ public class InterfaceGraphique {
                     y  = 0.9;
                 }
 
-                // On place la partie 1 du Domino
+                // On place la partie 2 du Domino
                 if (tuile.getType2().equals("Prairie")) {
                     tuile.setX2(x);
                     tuile.setY2(y);
@@ -510,12 +512,12 @@ public class InterfaceGraphique {
     }
 
 
-    public static ArrayList<Tuile> supprimerDominos(ArrayList<Tuile> listePrincipale, ArrayList<Tuile> elementsASupprimer) {
+    /*public static ArrayList<Tuile> supprimerDominos(ArrayList<Tuile> listePrincipale, ArrayList<Tuile> elementsASupprimer) {
 
         listePrincipale.removeAll(elementsASupprimer);
         return listePrincipale;
 
-    }
+    }*/
 
     public static Tuile afficherDominosPioche(ArrayList<Tuile> listeDominos) throws InterruptedException {
         StdDraw.clear();
@@ -584,8 +586,6 @@ public class InterfaceGraphique {
             }
 
 
-
-
             double k = -0.05;
 
             for (int j = 1; j <= tuile.getNmbCouronne2(); j++) {
@@ -623,45 +623,48 @@ public class InterfaceGraphique {
 
         Tuile tuile = j.getTampon();
 
-        if (tuile.getType1().equals("Prairie")) {
-            StdDraw.picture(0.5, 0.55, "out/img/dominos/prairie.png", 0.2, 0.2);
-        }
-        if (tuile.getType1().equals("Foret")) {
-            StdDraw.picture(0.5, 0.55, "out/img/dominos/foret.png", 0.2, 0.2);
-        }
-        if (tuile.getType1().equals("Champs")) {
-            StdDraw.picture(0.5, 0.55, "out/img/dominos/champs.png", 0.2, 0.2);
-        }
-        if (tuile.getType1().equals("Mer")) {
-            StdDraw.picture(0.5, 0.55, "out/img/dominos/mer.png", 0.2, 0.2);
-        }
-        if (tuile.getType1().equals("Montagne")) {
-            StdDraw.picture(0.5, 0.55, "out/img/dominos/montagne.png", 0.2, 0.2);
-        }
-        if (tuile.getType1().equals("Mine")) {
-            StdDraw.picture(0.5, 0.55, "out/img/dominos/mine.png", 0.2, 0.2);
-        }
+            if (tuile.getType1().equals("Prairie")) {
+                StdDraw.picture(0.5, 0.55, "out/img/dominos/prairie.png", 0.2, 0.2);
+            }
+            if (tuile.getType1().equals("Foret")) {
+                StdDraw.picture(0.5, 0.55, "out/img/dominos/foret.png", 0.2, 0.2);
+            }
+            if (tuile.getType1().equals("Champs")) {
+                StdDraw.picture(0.5, 0.55, "out/img/dominos/champs.png", 0.2, 0.2);
+            }
+            if (tuile.getType1().equals("Mer")) {
+                StdDraw.picture(0.5, 0.55, "out/img/dominos/mer.png", 0.2, 0.2);
+            }
+            if (tuile.getType1().equals("Montagne")) {
+                StdDraw.picture(0.5, 0.55, "out/img/dominos/montagne.png", 0.2, 0.2);
+            }
+            if (tuile.getType1().equals("Mine")) {
+                StdDraw.picture(0.5, 0.55, "out/img/dominos/mine.png", 0.2, 0.2);
+            }
 
-        if (tuile.getType2().equals("Prairie")) {
-            StdDraw.picture(0.5, 0.35, "out/img/dominos/prairie.png", 0.2, 0.2);
-        }
-        if (tuile.getType2().equals("Foret")) {
-            StdDraw.picture(0.5, 0.35, "out/img/dominos/foret.png", 0.2, 0.2);
-        }
-        if (tuile.getType2().equals("Champs")) {
-            StdDraw.picture(0.5, 0.35, "out/img/dominos/champs.png", 0.2, 0.2);
-        }
-        if (tuile.getType2().equals("Mer")) {
-            StdDraw.picture(0.5, 0.35, "out/img/dominos/mer.png", 0.2, 0.2);
-        }
-        if (tuile.getType2().equals("Montagne")) {
-            StdDraw.picture(0.5, 0.35, "out/img/dominos/montagne.png", 0.2, 0.2);
-        }
-        if (tuile.getType2().equals("Mine")) {
-            StdDraw.picture(0.5, 0.35, "out/img/dominos/mine.png", 0.2, 0.2);
-        }
+            if (tuile.getType2().equals("Prairie")) {
+                StdDraw.picture(0.5, 0.35, "out/img/dominos/prairie.png", 0.2, 0.2);
+            }
+            if (tuile.getType2().equals("Foret")) {
+                StdDraw.picture(0.5, 0.35, "out/img/dominos/foret.png", 0.2, 0.2);
+            }
+            if (tuile.getType2().equals("Champs")) {
+                StdDraw.picture(0.5, 0.35, "out/img/dominos/champs.png", 0.2, 0.2);
+            }
+            if (tuile.getType2().equals("Mer")) {
+                StdDraw.picture(0.5, 0.35, "out/img/dominos/mer.png", 0.2, 0.2);
+            }
+            if (tuile.getType2().equals("Montagne")) {
+                StdDraw.picture(0.5, 0.35, "out/img/dominos/montagne.png", 0.2, 0.2);
+            }
+            if (tuile.getType2().equals("Mine")) {
+                StdDraw.picture(0.5, 0.35, "out/img/dominos/mine.png", 0.2, 0.2);
+            }
 
 
+
+
+        //Accéder à la grille
         while (true) {
             if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) {
                 return 1;
