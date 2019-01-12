@@ -37,7 +37,7 @@ public class TuilesFileReader {
                         line[1],
                         parseInt(line[2]),
                         line[3],
-                        parseInt(line[4]));
+                        parseInt(line[4]),0,0,0,0);
                 tuiles.add(domino);
             }
 

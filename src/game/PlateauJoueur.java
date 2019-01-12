@@ -27,5 +27,6 @@ public class PlateauJoueur {
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
+
 }
 

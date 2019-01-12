@@ -5,7 +5,10 @@ import edu.princeton.cs.introcs.StdOut;
 
 import javax.naming.spi.StateFactory;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -117,20 +120,393 @@ public class InterfaceGraphique {
         }
     }
 
-    public static void Plateau() {
+    public static Tuile Plateau(Joueur joueur, Tuile tuile) throws InterruptedException {
 
         StdDraw.clear();
         StdDraw.setPenColor(Color.ORANGE);
 
         // Lignes horizontales
-        for(double i = 0.1; i <= 0.9; i+=0.11111111111) {
+        for (double i = 0.2; i < 1; i += 0.2) {
             StdDraw.line(i, 0, i, 1);
             StdDraw.line(0, i, 1, i);
         }
 
         // On affiche le chateau au centre
 
-        StdDraw.picture(0.49, 0.49, "out/img/chateau.jpg", 0.1, 0.1);
+        StdDraw.picture(0.49, 0.49, "out/img/chateau.jpg", 0.2, 0.2);
+
+        ArrayList<Tuile> plateauJoueur = joueur.getPaquet();
+
+        System.out.println(plateauJoueur);
+
+
+        // affichage des tuiles déja posées
+
+        for(Tuile t:joueur.getPaquet()) {
+            // On place la partie 1 du Domino
+            if (tuile.getType1().equals("Prairie")) {
+                StdDraw.picture(tuile.getX1(),tuile.getX2(),"out/img/dominos/prairie.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX1()+k,tuile.getY1()+k, "out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Foret")) {
+                StdDraw.picture(tuile.getX1(),tuile.getY1(),"out/img/dominos/foret.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX1()+k,tuile.getY1()+k,"out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Champs")) {
+                StdDraw.picture(tuile.getX1(),tuile.getX2(),"out/img/dominos/champs.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX1()+k,tuile.getY1()+k, "out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Mer")) {
+                StdDraw.picture(tuile.getX1(),tuile.getX2(),"out/img/dominos/mer.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX1()+k,tuile.getY1()+k,"out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Montagne")) {
+                StdDraw.picture(tuile.getX1(),tuile.getY1(),"out/img/dominos/montagne.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX1()+k,tuile.getY1()+k, "out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Mine")) {
+                StdDraw.picture(tuile.getX1(),tuile.getY1(),"out/img/dominos/mine.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX1()+k,tuile.getY1()+k,"out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            // On place la partie 1 du Domino
+            if (tuile.getType1().equals("Prairie")) {
+                StdDraw.picture(tuile.getX2(),tuile.getX2(),"out/img/dominos/prairie.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX2()+k,tuile.getY2()+k, "out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Foret")) {
+                StdDraw.picture(tuile.getX2(),tuile.getY2(),"out/img/dominos/foret.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX2()+k,tuile.getY2()+k,"out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Champs")) {
+                StdDraw.picture(tuile.getX2(),tuile.getX2(),"out/img/dominos/champs.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX2()+k,tuile.getY2()+k, "out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Mer")) {
+                StdDraw.picture(tuile.getX2(),tuile.getX2(),"out/img/dominos/mer.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX2()+k,tuile.getY2()+k,"out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Montagne")) {
+                StdDraw.picture(tuile.getX2(),tuile.getY2(),"out/img/dominos/montagne.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX2()+k,tuile.getY2()+k, "out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+            if (tuile.getType1().equals("Mine")) {
+                StdDraw.picture(tuile.getX2(),tuile.getY2(),"out/img/dominos/mine.png",0.2,0.2);
+                double k = -0.05;
+
+                for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                    StdDraw.picture(tuile.getX2()+k,tuile.getY2()+k,"out/img/couronne.png", 0.05, 0.05);
+                    k += 0.05;
+                }
+                break;
+            }
+        }
+
+
+        // Création grille magnétique
+
+        while(true)
+        {
+            // On affiche les coordonnées
+            if (StdDraw.isMousePressed()) {
+
+                double x = StdDraw.mouseX();
+                double y = StdDraw.mouseY();
+
+                if(x > 0 && x < 0.2)  {
+                    x = 0.1;
+                }
+                if(x > 0.2 && x < 0.4)  {
+                    x = 0.3;
+                }
+                if(x > 0.4 && x < 0.6)  {
+                    x = 0.5;
+                }
+                if(x > 0.6 && x < 0.8)  {
+                    x = 0.7;
+                }
+                if(x > 0.8 && x < 1)  {
+                    x = 0.9;
+                }
+
+                if(y > 0 && y < 0.2)  {
+                    y = 0.1;
+                }
+                if(y > 0.2 && y < 0.4)  {
+                    y = 0.3;
+                }
+                if(y > 0.4 && y < 0.6)  {
+                    y= 0.5;
+                }
+                if(y > 0.6 && y < 0.8)  {
+                    y = 0.7;
+                }
+                if(y > 0.8 && y < 1)  {
+                    y  = 0.9;
+                }
+
+                // On place la partie 1 du Domino
+                if (tuile.getType1().equals("Prairie")) {
+                    tuile.setX1(x);
+                    tuile.setY1(y);
+                    StdDraw.picture(x,y,"out/img/dominos/prairie.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType1().equals("Foret")) {
+                    tuile.setX1(x);
+                    tuile.setY1(y);
+                    StdDraw.picture(x,y,"out/img/dominos/foret.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType1().equals("Champs")) {
+                    tuile.setX1(x);
+                    tuile.setY1(y);
+                    StdDraw.picture(x,y,"out/img/dominos/champs.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType1().equals("Mer")) {
+                    tuile.setX1(x);
+                    tuile.setY1(y);
+                    StdDraw.picture(x,y,"out/img/dominos/mer.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType1().equals("Montagne")) {
+                    tuile.setX1(x);
+                    tuile.setY1(y);
+                    StdDraw.picture(x,y,"out/img/dominos/montagne.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType1().equals("Mine")) {
+                    tuile.setX1(x);
+                    tuile.setY1(y);
+                    StdDraw.picture(x,y,"out/img/dominos/mine.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+
+            }
+        }
+
+
+        Thread.sleep(500);
+
+        while(true)
+        {
+            // On affiche les coordonnées
+            if (StdDraw.isMousePressed()) {
+
+                double x = StdDraw.mouseX();
+                double y = StdDraw.mouseY();
+
+                if(x > 0 && x < 0.2)  {
+                    x = 0.1;
+                }
+                if(x > 0.2 && x < 0.4)  {
+                    x = 0.3;
+                }
+                if(x > 0.4 && x < 0.6)  {
+                    x = 0.5;
+                }
+                if(x > 0.6 && x < 0.8)  {
+                    x = 0.7;
+                }
+                if(x > 0.8 && x < 1)  {
+                    x = 0.9;
+                }
+
+                if(y > 0 && y < 0.2)  {
+                    y = 0.1;
+                }
+                if(y > 0.2 && y < 0.4)  {
+                    y = 0.3;
+                }
+                if(y > 0.4 && y < 0.6)  {
+                    y= 0.5;
+                }
+                if(y > 0.6 && y < 0.8)  {
+                    y = 0.7;
+                }
+                if(y > 0.8 && y < 1)  {
+                    y  = 0.9;
+                }
+
+                // On place la partie 1 du Domino
+                if (tuile.getType2().equals("Prairie")) {
+                    tuile.setX2(x);
+                    tuile.setY2(y);
+                    StdDraw.picture(x,y,"out/img/dominos/prairie.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType2().equals("Foret")) {
+                    tuile.setX2(x);
+                    tuile.setY2(y);
+                    StdDraw.picture(x,y,"out/img/dominos/foret.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType2().equals("Champs")) {
+                    tuile.setX2(x);
+                    tuile.setY2(y);
+                    StdDraw.picture(x,y,"out/img/dominos/champs.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType2().equals("Mer")) {
+                    tuile.setX2(x);
+                    tuile.setY2(y);
+                    StdDraw.picture(x,y,"out/img/dominos/mer.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType2().equals("Montagne")) {
+                    tuile.setX2(x);
+                    tuile.setY2(y);
+                    StdDraw.picture(x,y,"out/img/dominos/montagne.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+                if (tuile.getType2().equals("Mine")) {
+                    tuile.setX2(x);
+                    tuile.setY2(y);
+                    StdDraw.picture(x,y,"out/img/dominos/mine.png",0.2,0.2);
+                    double k = -0.05;
+
+                    for (int j = 1; j <= tuile.getNmbCouronne1(); j++) {
+                        StdDraw.picture(x + k, y, "out/img/couronne.png", 0.05, 0.05);
+                        k += 0.05;
+                    }
+                    break;
+                }
+            }
+        }
+        Thread.sleep(1000);
+        return tuile;
     }
 
 
@@ -207,6 +583,9 @@ public class InterfaceGraphique {
                 StdDraw.picture(i, 0.35, "out/img/dominos/mine.png", 0.2, 0.2);
             }
 
+
+
+
             double k = -0.05;
 
             for (int j = 1; j <= tuile.getNmbCouronne2(); j++) {
@@ -228,10 +607,71 @@ public class InterfaceGraphique {
         }
     }
 
-public static void clear() {
+    public static void clear() {
         StdDraw.clear();
-}
+    }
+
+    public static int afficherJoueur(Joueur j) throws InterruptedException {
+        StdDraw.clear();
+        Thread.sleep(500);
+        String nom = j.getName();
+        Font font1 = new Font("Comic Sans MS", 1, 45);
+        StdDraw.setPenColor(Color.ORANGE);
+        StdDraw.setFont(font1);
+
+        StdDraw.text(0.5, 0.8, "Au " + nom + " de jouer ");
+
+        Tuile tuile = j.getTampon();
+
+        if (tuile.getType1().equals("Prairie")) {
+            StdDraw.picture(0.5, 0.55, "out/img/dominos/prairie.png", 0.2, 0.2);
+        }
+        if (tuile.getType1().equals("Foret")) {
+            StdDraw.picture(0.5, 0.55, "out/img/dominos/foret.png", 0.2, 0.2);
+        }
+        if (tuile.getType1().equals("Champs")) {
+            StdDraw.picture(0.5, 0.55, "out/img/dominos/champs.png", 0.2, 0.2);
+        }
+        if (tuile.getType1().equals("Mer")) {
+            StdDraw.picture(0.5, 0.55, "out/img/dominos/mer.png", 0.2, 0.2);
+        }
+        if (tuile.getType1().equals("Montagne")) {
+            StdDraw.picture(0.5, 0.55, "out/img/dominos/montagne.png", 0.2, 0.2);
+        }
+        if (tuile.getType1().equals("Mine")) {
+            StdDraw.picture(0.5, 0.55, "out/img/dominos/mine.png", 0.2, 0.2);
+        }
+
+        if (tuile.getType2().equals("Prairie")) {
+            StdDraw.picture(0.5, 0.35, "out/img/dominos/prairie.png", 0.2, 0.2);
+        }
+        if (tuile.getType2().equals("Foret")) {
+            StdDraw.picture(0.5, 0.35, "out/img/dominos/foret.png", 0.2, 0.2);
+        }
+        if (tuile.getType2().equals("Champs")) {
+            StdDraw.picture(0.5, 0.35, "out/img/dominos/champs.png", 0.2, 0.2);
+        }
+        if (tuile.getType2().equals("Mer")) {
+            StdDraw.picture(0.5, 0.35, "out/img/dominos/mer.png", 0.2, 0.2);
+        }
+        if (tuile.getType2().equals("Montagne")) {
+            StdDraw.picture(0.5, 0.35, "out/img/dominos/montagne.png", 0.2, 0.2);
+        }
+        if (tuile.getType2().equals("Mine")) {
+            StdDraw.picture(0.5, 0.35, "out/img/dominos/mine.png", 0.2, 0.2);
+        }
+
+
+        while (true) {
+            if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) {
+                return 1;
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
     }
+
+
 }

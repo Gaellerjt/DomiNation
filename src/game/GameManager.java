@@ -198,7 +198,7 @@ public class GameManager {
         System.out.println("nombre de joueurs = " + nombreJoueurs);
         ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
         for (int i = 0; i < nombreJoueurs; i++) {
-            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0)));
+            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0,0,0,0,0)));
         }
 
         // On choisit le roi pour chaque joueur
@@ -219,36 +219,45 @@ public class GameManager {
         // On mélange les joueurs
         ArrayList<Joueur> joueurTour = new ArrayList<Joueur>();
         for (int i = 0; i < nombreJoueurs; i++) {
-            joueurTour.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0)));
+            joueurTour.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0,0,0,0,0)));
         }
 
-        System.out.println(joueurTour);
 
         int i = 1;
         Collections.shuffle(joueurTour);
 
+        ArrayList<Joueur> listTemp = new ArrayList<Joueur>();
+
         Iterator<Joueur> it = joueurTour.iterator();
         while (it.hasNext()) {
             Joueur j = it.next();
-            System.out.println(j);
             // On affiche les 4 premiers dominos
             Tuile tuileSelectionnee= InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos);
             j.setTampon(tuileSelectionnee);
+            listTemp.add(j);
             listeDes4PremiersDominos.remove(tuileSelectionnee);
             it.remove();
         }
+
         InterfaceGraphique.clear();
 
         // On crée les plateaux
-
 
         ArrayList<PlateauJoueur> listePlateaux = new ArrayList<PlateauJoueur>();
         for(Joueur j:listeJoueurs) {
             listePlateaux.add(new PlateauJoueur(new int[9][9],j));
         }
-        System.out.println(listePlateaux);
 
-        InterfaceGraphique.Plateau();
+        while(true)  {
+            for(int k = 0; k < listTemp.size(); k++ ) {
+                System.out.println(k);
+                InterfaceGraphique.afficherJoueur(listTemp.get(k));
+                listTemp.get(k).setTampon(InterfaceGraphique.Plateau(listTemp.get(k),listTemp.get(k).getTampon()));
+                listTemp.get(k).appendPaquet(listTemp.get(k).getTampon());
+            }
+
+        }
+
 
     }
 }
