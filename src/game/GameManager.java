@@ -3,7 +3,7 @@ package game;
 import java.awt.*;
 import java.util.*;
 
-import edu.princeton.cs.introcs.StdDraw;
+import static game.Joueur.getScore;
 
 public class GameManager {
 
@@ -19,8 +19,6 @@ public class GameManager {
         listeRois.add(new Roi(Color.PINK));
         listeRois.add(new Roi(Color.YELLOW));
 
-        ArrayList<Tuile> listePaquet = new ArrayList<Tuile>();
-
         // On crée l'interface graphique
         InterfaceGraphique InterfaceGraphique = new InterfaceGraphique();
         // On affiche le menu principal
@@ -30,7 +28,7 @@ public class GameManager {
         System.out.println("nombre de joueurs = " + nombreJoueurs);
         ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
         for (int i = 0; i < nombreJoueurs; i++) {
-            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0,null,0,null,0,0,0,0,0)));
+            listeJoueurs.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), new ArrayList<>()));
         }
 
         // On choisit le roi pour chaque joueur
@@ -38,7 +36,7 @@ public class GameManager {
 
         // On récupère les tuiles en fonction du nombre de joueurs
         ArrayList<Tuile> tuilesFromFile = TuilesFileReader.getTuilesFromFile();
-        ArrayList<Tuile> listeTuiles = TuilesFileReader.shuffleTuiles(tuilesFromFile,nombreJoueurs);
+        ArrayList<Tuile> listeTuiles = TuilesFileReader.shuffleTuiles(tuilesFromFile, nombreJoueurs);
 
         // Savoir quel joueur commence
         Joueur joueurQuiCommence = listeJoueurs.get((int) (Math.random() * listeJoueurs.size()));
@@ -47,12 +45,12 @@ public class GameManager {
         // On crée les plateaux
 
         ArrayList<PlateauJoueur> listePlateaux = new ArrayList<PlateauJoueur>();
-        for(Joueur j:listeJoueurs) {
-            listePlateaux.add(new PlateauJoueur(new int[9][9],j));
+        for (Joueur j : listeJoueurs) {
+            listePlateaux.add(new PlateauJoueur(new int[9][9], j));
         }
 
 
-        while (listeTuiles.size()!=0) {
+        while (listeTuiles.size() != 0) {
             ArrayList<Tuile> listeDes4PremiersDominos = Tuile.selectionnerDominos(listeTuiles, nombreJoueurs);
 
             // On trie les dominos
@@ -61,7 +59,7 @@ public class GameManager {
             // On mélange les joueurs
             ArrayList<Joueur> joueurTour = new ArrayList<Joueur>();
             for (int i = 0; i < nombreJoueurs; i++) {
-                joueurTour.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), listePaquet, new Tuile(0, null, 0, null, 0, 0, 0, 0, 0)));
+                joueurTour.add(new Joueur("Joueur " + (i + 1), listeRois, new Chateau(Color.WHITE), new ArrayList<>()));
             }
             int i = 1;
             Collections.shuffle(joueurTour);
@@ -71,7 +69,6 @@ public class GameManager {
             Iterator<Joueur> it = joueurTour.iterator();
             while (it.hasNext()) {
                 Joueur j = it.next();
-
 
                 // On affiche les 4 premiers dominos
                 Tuile tuileSelectionnee = InterfaceGraphique.afficherDominosPioche(listeDes4PremiersDominos, j);
@@ -85,15 +82,23 @@ public class GameManager {
 
 
             //Tour de jeu
-
             for (int k = 0; k < listTemp.size(); k++) {
-                System.out.println(k);
+                Joueur joueur = Joueur.findJoueur(listeJoueurs, listTemp.get(k).getName());
                 InterfaceGraphique.afficherJoueur(listTemp.get(k));
-                listTemp.get(k).setTampon(InterfaceGraphique.Plateau(listTemp.get(k), listTemp.get(k).getTampon()));
-                //listTemp.get(k).appendPaquet(listTemp.get(k).getTampon());
-                
+                Tuile addedTuile = InterfaceGraphique.Plateau(joueur, listTemp.get(k).getTampon());
+                if (addedTuile != null) {
+                    joueur.addTuile(addedTuile);
+                }
             }
         }
+
+        // Fin du jeu
+        for (int i = 0; i < listeJoueurs.size(); i++) {
+            Joueur joueur = listeJoueurs.get(i);
+            joueur.setScore(getScore(joueur.getPaquet()));
+            System.out.println(joueur.getName() + " score is " + joueur.getScore());
+        }
+        InterfaceGraphique.afficherScore(listeJoueurs);
     }
 }
 
