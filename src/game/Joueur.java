@@ -138,6 +138,6 @@ public class Joueur {
                 crownChamps += paquet.get(tuile).getNmbCouronne2();
             }
         }
-        return scorePrairie * crownPrairie + scoreMer + crownMer + scoreMine * crownMine + scoreMontagne * crownMontagne + scoreForet * crownForet + scoreChamps * crownChamps;
+        return scorePrairie * crownPrairie + scoreMer * crownMer + scoreMine * crownMine + scoreMontagne * crownMontagne + scoreForet * crownForet + scoreChamps * crownChamps;
     }
 }
