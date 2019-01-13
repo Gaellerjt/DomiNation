@@ -519,7 +519,7 @@ public class InterfaceGraphique {
 
     }*/
 
-    public static Tuile afficherDominosPioche(ArrayList<Tuile> listeDominos) throws InterruptedException {
+    public static Tuile afficherDominosPioche(ArrayList<Tuile> listeDominos, Joueur joueur) throws InterruptedException {
         StdDraw.clear();
         Thread.sleep(500);
 
@@ -597,6 +597,13 @@ public class InterfaceGraphique {
         }
         // Boucle de test
         while (true) {
+
+            Font font1 = new Font("Comic Sans MS", 1, 40);
+            StdDraw.setFont(font1);
+            StdDraw.text(0.5, 0.9, joueur.getName());
+            StdDraw.setPenColor(Color.ORANGE);
+            StdDraw.text(0.5, 0.8, "Choisissez un domino");
+
             double k = 0.1;
             for (Tuile t : listeDominos) {
                 if (StdDraw.mouseX() > k && StdDraw.mouseX() < k + 0.2 && StdDraw.mouseY() > 0.25 && StdDraw.mouseY() < 0.65 && StdDraw.isMousePressed()) {
